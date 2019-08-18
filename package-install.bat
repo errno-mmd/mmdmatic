@@ -2,7 +2,9 @@ call activate autotracevmd
 call conda install -y curl
 call conda install -y git
 call conda install -y cython
+call conda install -y m2-base
 call conda install -y m2-tar
+call conda install -y m2-unzip
 call conda install -y m2-gawk
 call conda install -y swig
 call conda install -y python-dateutil
