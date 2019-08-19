@@ -20,6 +20,12 @@ https://www.anaconda.com/distribution/ からAnacondaのWindows用インスト�
 ダウンロードしたインストーラを実行します。途中の Advanced Options で、"Add Anaconda to my PATH environment variable" にチェックを入れます。それ以外はデフォルト設定のまま Next をクリックしていきます。
 Setting up the package cache ... と表示された後しばらく時間がかかりますが、止まったように見えても Show details をクリックすると動いているのが分かります。最後に Finish をクリックして終了です。
 
+### Visual Studio のインストール
+
+PythonのモジュールをビルドするためにCコンパイラが必要な場合があります。
+https://visualstudio.microsoft.com/ja/free-developer-offers/ から無償版の Visual Studio Community 2019 のインストーラを入手しましょう。
+インストーラを起動すると、インストールする機能を選択できます。ここでは「C++によるデスクトップ開発」を選びます。
+
 ### Tensorflow のインストール
 
 GPUを使う場合は tensorflow-gpu-install.bat を、GPUを使わない場合は tensorflow-install.bat を実行します。
