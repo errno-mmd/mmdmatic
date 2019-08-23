@@ -1,6 +1,13 @@
-call conda create -y -n autotracevmd jupyter tensorflow
-call activate autotracevmd
+call conda create -n mmdmat || goto die
+call activate mmdmat || goto die
+call conda install -y tensorflow || goto die
+python tftest1.py || goto die
 
-python tftest1.py
+@echo COMPLETE
+@pause -1
+exit /b 0
 
-pause -1
+:die
+@echo ERROR
+@pause -1
+exit /b 1

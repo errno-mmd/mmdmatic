@@ -1,3 +1,4 @@
+import sys
 import tensorflow as tf
 
 tf.compat.v1.enable_eager_execution()
@@ -8,3 +9,4 @@ if (tf.test.is_gpu_available()):
 else:
     print('Tensorflow is working. GPU is not available')
 
+sys.exit(0)
