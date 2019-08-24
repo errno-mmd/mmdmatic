@@ -80,3 +80,13 @@ uninstall.bat を実行することでPythonパッケージおよび仮想環境
 - VMD-3d-pose-baseline-multi
 
 本プログラム自体はMITライセンスです。詳しくは LICENSE ファイルを参照してください。
+
+## 連絡先
+バグ報告などは下記のいずれかにどうぞ。(上のほうが推奨)
+表示されたメッセージと、本プログラムのバージョンを併せてご連絡ください。
+
+(1) GitHub の issue (課題管理)
+    https://github.com/errno-mmd/mmdmatic/issues
+(2) Twitter で @errno_mmd にメンションを送る
+    https://twitter.com/errno_mmd
+
