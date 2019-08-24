@@ -2,6 +2,17 @@
 
 ## 概要
 Windows上にMMD自動トレースの環境を(わりと簡単に)構築するインストーラです。
+下記のプログラム群をインストールします。
+ - [tf-pose-estimation](https://github.com/errno-mmd/tf-pose-estimation)
+ - [FCRN-DepthPrediction-vmd](https://github.com/miu200521358/FCRN-DepthPrediction-vmd)
+ - [3d-pose-baseline-vmd](https://github.com/miu200521358/3d-pose-baseline-vmd)
+ - [VMD-3d-pose-baseline-multi](https://github.com/miu200521358/VMD-3d-pose-baseline-multi)
+ - [MotionTraceBulk](https://github.com/errno-mmd/motion_trace_bulk/tree/mmdmatic)
+
+## 動作環境
+
+64bit版 Windows 7/10 で動作します(32bit版Windowsは非サポート)。
+もしGPU版を使う場合は NVIDIA GPU ドライバがインストールされている必要があります。
 
 ## インストール
 
@@ -13,7 +24,7 @@ GitHubから本プログラムのZIPファイルをダウンロードして適�
 
 ### Anaconda + Python のインストール
 
-https://www.anaconda.com/distribution/ からAnacondaのWindows用インストーラをダウンロードします。このインストーラにはPythonも同梱されています。必ずPython 3系を選んでください(Anaconda 2019.07ならPython 3.7 version)。かつ、お使いのWindowsが 64ビット版 なら 64-Bit Graphical Installer、32ビット版なら 32-Bit Graphical Installer を選びましょう。
+https://www.anaconda.com/distribution/ からAnacondaのWindows用インストーラをダウンロードします。このインストーラにはPythonも同梱されています。必ずPython 3系(Anaconda 2019.07ならPython 3.7 version)の 64-Bit Graphical Installer を選びましょう。
 
 ダウンロードしたインストーラを実行します。途中の Advanced Options で、"Add Anaconda to my PATH environment variable" にチェックを入れます。それ以外はデフォルト設定のまま Next をクリックしていきます。
 Setting up the package cache ... と表示された後しばらく時間がかかりますが、止まったように見えても Show details をクリックすると動いているのが分かります。最後に Finish をクリックして終了です。
@@ -27,9 +38,8 @@ PythonのモジュールをビルドするためにC++コンパイラが必要�
 ### Tensorflow のインストール
 
 GPUを使う場合は tensorflow-gpu-install.bat を、GPUを使わない場合は tensorflow-install.bat を実行します。
-
-最後に "Tensorflow is working. GPU is available" と表示されたら完了です。
-(GPUを使わない場合、メッセージの最後は"not available"になります)
+最初に "Proceed ([y]/n)?" と聞かれるので、y を入力してエンターキーを押します。
+最後に "COMPLETE" と表示されたら完了です。
 
 ### Pythonパッケージのインストール
 
