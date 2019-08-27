@@ -1,6 +1,9 @@
 # mmdmatic - MMD Motion Auto-Trace Installer on Conda
 
+English version (README.en.md) is also available.
+
 ## 概要
+
 Windows上にMMD自動トレースの環境を(わりと簡単に)構築するインストーラです。
 下記のプログラム群をインストールします。
  - [tf-pose-estimation](https://github.com/errno-mmd/tf-pose-estimation)
@@ -8,6 +11,10 @@ Windows上にMMD自動トレースの環境を(わりと簡単に)構築する�
  - [3d-pose-baseline-vmd](https://github.com/miu200521358/3d-pose-baseline-vmd)
  - [VMD-3d-pose-baseline-multi](https://github.com/miu200521358/VMD-3d-pose-baseline-multi)
  - [MotionTraceBulk](https://github.com/errno-mmd/motion_trace_bulk/tree/mmdmatic)
+
+miuさんが開発されたローカル版MMD自動トレースをベースにしていますが、OpenPoseの代わりに tf-pose-estimation を採用することでインストールを簡単にしています。
+
+MMD自動トレースについて詳しくは[MMDモーショントレース自動化への挑戦](https://qiita.com/miu200521358/items/d826e9d70853728abc51)を参照してください。
 
 ## 動作環境
 
@@ -82,11 +89,10 @@ uninstall.bat を実行することでPythonパッケージおよび仮想環境
 本プログラム自体はMITライセンスです。詳しくは LICENSE ファイルを参照してください。
 
 ## 連絡先
-バグ報告などは下記のいずれかにどうぞ。(上のほうが推奨)
+バグ報告などは下記のいずれかにどうぞ(上のほうが推奨)。
 表示されたメッセージと、本プログラムのバージョンを併せてご連絡ください。
 
-(1) GitHub の issue (課題管理)
-    https://github.com/errno-mmd/mmdmatic/issues
-(2) Twitter で @errno_mmd にメンションを送る
-    https://twitter.com/errno_mmd
-
+- GitHub の issue (課題管理)
+  https://github.com/errno-mmd/mmdmatic/issues
+- Twitter で @errno_mmd にメンションを送る
+  https://twitter.com/errno_mmd
