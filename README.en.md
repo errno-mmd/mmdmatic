@@ -34,14 +34,6 @@ Please select Python 3.x version 64-bit Graphical Installer.
 In "Advanced Options", check the "Add Anaconda to my PATH environment variable" option.
 You can leave any other options as default and simply click "Next".
 
-### Install Visual Studio
-
-Some Python modules require C++ compiler to build them.
-
-1. Download an installer of Visual Studio Community from https://visualstudio.microsoft.com/free-developer-offers/
-2. Run the installer. It will show some install options.
-3. Check "Desktop development with C++" and click "Install"
-
 ### Install Tensorflow
 
 1. If you prefer to use a GPU, run tensorflow-gpu-install.bat.
@@ -76,7 +68,7 @@ uninstall.bat will remove Python packages and virtual environment installed/crea
 
 Then you can remove the folder (e.g. C:\App\mmdmatic) which contains the batch files and the tools.
 
-You can also uninstall Anaconda and Visual Studio from "Control Panel" - "Programs and Features"
+You can also uninstall Anaconda from "Control Panel" - "Programs and Features"
 
 ## License
 

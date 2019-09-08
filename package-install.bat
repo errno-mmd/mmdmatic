@@ -25,7 +25,6 @@ call conda install -y scipy || goto die
 call conda install -y tqdm || goto die
 pip install fire || goto die
 pip install slidingwindow || goto die
-pip install "git+https://github.com/philferriere/cocoapi.git#egg=pycocotools&subdirectory=PythonAPI" || goto die
 
 @echo COMPLETE
 @pause -1
