@@ -1,0 +1,4 @@
+* text eol=crlf
+*.bat text eol=crlf
+*.md text eol=crlf
+*.py text
