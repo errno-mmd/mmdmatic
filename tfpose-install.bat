@@ -1,5 +1,5 @@
 call activate mmdmat || goto die
-git clone --depth 1 https://github.com/errno-mmd/tf-pose-estimation.git || goto die
+git clone --depth 1 -b mmdmatic1.02.01 https://github.com/errno-mmd/tf-pose-estimation.git || goto die
 cd tf-pose-estimation || goto die
 curl -L -O https://github.com/errno-mmd/tf-pose-estimation/releases/download/mmdmatic1.02.01/pycocotools.zip || goto die
 unzip pycocotools.zip || goto die
