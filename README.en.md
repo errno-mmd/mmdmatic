@@ -14,9 +14,8 @@ Mmdmatic is based on miu's MMD Auto Trace (local version), and it is modified to
 
 ## Supported platforms
 
-64-bit version of Windows 7 / 10 (32-bit versions are not supported)
-
-A NVIDIA GPU driver is needed if you run the tools on a GPU.
+64-bit version of Windows 7 / 10 (32-bit versions are not supported).  
+NVIDIA GPU driver is needed if you run the tools on a GPU.
 
 ## Installation
 
@@ -57,17 +56,14 @@ Run the following batch files. You can run them in parallel.
 
 ## How to run
 
-Run MotionTraceBulk_en.bat in motion_trace_bulk folder and answer to the questions the batch asks.
-
+Run MotionTraceBulk_en.bat in motion_trace_bulk folder and answer to the questions the batch asks.  
 (You can find more detailed instruction in motion_trace_bulk/README.md, but it is written in Japanese)
 
 
 ## Uninstallation
 
-uninstall.bat will remove Python packages and virtual environment installed/created by the installer.
-
-Then you can remove the folder (e.g. C:\App\mmdmatic) which contains the batch files and the tools.
-
+uninstall.bat will remove Python packages and virtual environment installed/created by the installer.  
+Then you can remove the folder (e.g. C:\App\mmdmatic) which contains the batch files and the tools.  
 You can also uninstall Anaconda from "Control Panel" - "Programs and Features"
 
 ## License
@@ -89,7 +85,7 @@ This program (mmdmatic) itself is under MIT license. Please see LICENSE file for
 
 If you find a bug, or have something to ask, please contact me.
 
-- Create an "issue" on GitHub
+- Create an "issue" on GitHub  
   https://github.com/errno-mmd/mmdmatic/issues
-- Mention @errno_mmd on Twitter
+- Mention @errno_mmd on Twitter  
   https://twitter.com/errno_mmd
