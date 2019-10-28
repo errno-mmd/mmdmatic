@@ -1,6 +1,6 @@
 call conda create -n mmdmat || goto die
 call activate mmdmat || goto die
-call conda install -y tensorflow || goto die
+call conda install -y tensorflow=1.14.0 || goto die
 python tftest1.py || goto die
 
 @echo COMPLETE
