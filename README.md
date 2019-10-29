@@ -17,8 +17,11 @@ MMD自動トレースについて詳しくは[MMDモーショントレース自�
 
 ## 動作環境
 
-64bit版 Windows 7/10 で動作します(32bit版Windowsは非サポート)。
-もしGPU版を使う場合は NVIDIA GPU ドライバがインストールされている必要があります。
+64bit版 Windows 10 で動作します(32bit版Windowsは非サポート)。
+GPU版を使う場合は NVIDIA GPU ドライバがインストールされている必要があります。
+なお現バージョンはGPU無しだとmannequinchallenge-vmdが大量のメモリを使用するため、
+NVIDIA GPUを搭載していないPCをお使いの場合は
+[Colab版](https://qiita.com/miu200521358/items/fb0a7bcf2764d7797e26)をお勧めします。
 
 ## インストール
 
@@ -30,7 +33,7 @@ GitHubから本プログラムのZIPファイルをダウンロードして適�
 
 ### Anaconda + Python のインストール
 
-https://www.anaconda.com/distribution/ からAnacondaのWindows用インストーラをダウンロードします。このインストーラにはPythonも同梱されています。必ずPython 3系(Anaconda 2019.07ならPython 3.7 version)の 64-Bit Graphical Installer を選びましょう。  
+https://www.anaconda.com/distribution/ からAnacondaのWindows用インストーラをダウンロードします。このインストーラにはPythonも同梱されています。必ずPython 3系(Anaconda 2019.10ならPython 3.7 version)の 64-Bit Graphical Installer を選びましょう。  
 ダウンロードしたインストーラを実行します。途中の Advanced Options で、"Add Anaconda to my PATH environment variable" にチェックを入れます。それ以外はデフォルト設定のまま Next をクリックしていきます。
 Setting up the package cache ... と表示された後しばらく時間がかかりますが、止まったように見えても Show details をクリックすると動いているのが分かります。最後に Finish をクリックして終了です。
 
@@ -39,7 +42,8 @@ Setting up the package cache ... と表示された後しばらく時間がか�
 - GPUを使わない場合は tensorflow-install.bat を実行します。
 - CUDAに対応したNVIDA GPUを搭載しているPCなら、代わりに tensorflow-gpu-install.bat を実行することで高速なGPU版をインストールできます。
 
-どちらを実行した場合でも、最初に "Proceed ([y]/n)?" と聞かれるので、y を入力してエンターキーを押します。
+実行中にもし "Continue creating environment (y/[n])?" と聞かれたら、y を入力してエンターキーを押します。  
+"Proceed ([y]/n)?" と聞かれたら、y を入力してエンターキーを押します。  
 最後に "COMPLETE" と表示されるので、それを確認してから次に進んでください。
 
 ### Pythonパッケージのインストール
@@ -62,6 +66,9 @@ package-install.bat を実行します。
 
 インストールが完了したら motion_trace_bulk フォルダができます。
 その中の README.md に実行方法が書かれています。
+
+まずは[サンプル動画](https://drive.google.com/open?id=1ccBzmONGNDbvmKa7SSqwMRPKQ3q-_6LG)で試し、
+正常にVMDファイルが作られるのを確認することをお勧めします。
 
 ## アンインストール方法
 
@@ -101,10 +108,15 @@ A. スタートメニューの「Anaconda3 (64-bit)」にある「Anaconda Promp
    インストール先フォルダに移動してから(例: cd C:\App\mmdmatic\motion_trace_bulk)、
    自動トレースのバッチ(MotionTraceBulk.bat)を実行してみてください。
 
+Q. 何故かVMDファイルが作られない。
+A. 何かエラーが起きているはずです。上記のとおり Anaconda Prompt 上で実行してエラーメッセージを確認してください。
+   また、全ての動画でモーション作成が成功するとは限りません。まずサンプル動画で正しく動作するか確認しましょう。
+
 ## 連絡先
 
 バグ報告などは下記のいずれかにどうぞ(上のほうが推奨)。
 表示されたメッセージと、本プログラムのバージョンを併せてご連絡ください。
+エラーが起こったウィンドウのスクリーンショットを送るのが手っ取り早いです。
 
 - GitHub の issue (課題管理)  
   https://github.com/errno-mmd/mmdmatic/issues

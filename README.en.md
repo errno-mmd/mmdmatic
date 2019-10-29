@@ -14,8 +14,10 @@ Mmdmatic is based on miu's MMD Auto Trace (local version), and it is modified to
 
 ## Supported platforms
 
-64-bit version of Windows 7 / 10 (32-bit versions are not supported).  
-NVIDIA GPU driver is needed if you run the tools on a GPU.
+64-bit version of Windows 10 (32-bit versions are not supported).  
+NVIDIA GPU driver is needed if you run the tools on a GPU. 
+WARNING: If a GPU is not available, mannequinchallenge-vmd consumes a lot of memory.
+[Colab version](https://qiita.com/miu200521358/items/fb0a7bcf2764d7797e26) is recommended for GPU-less PCs.
 
 ## Installation
 
@@ -37,8 +39,9 @@ You can leave any other options as default and simply click "Next".
 
 1. If you prefer to use a GPU, run tensorflow-gpu-install.bat.
 Otherwise, run tensorflow-install.bat.
-2. When the batch ask you "Proceed ([y]/n)?", press Y and then press Enter.
-3. The batch shows "COMPLETE" when the installation finished successfully.
+2. If the batch ask you "Continue creating environment (y/[n])?", press Y and then press Enter.
+3. When the batch ask you "Proceed ([y]/n)?", press Y and then press Enter.
+4. The batch shows "COMPLETE" when the installation finished successfully.
 
 ### Install Python packages
 
