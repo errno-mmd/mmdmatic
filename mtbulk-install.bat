@@ -1,5 +1,5 @@
 call activate mmdmat || goto die
-git clone --depth 1 -b mat1.02.01 https://github.com/errno-mmd/motion_trace_bulk.git || goto die
+git clone --depth 1 -b mat1.02.01-2 https://github.com/errno-mmd/motion_trace_bulk.git || goto die
 
 @echo COMPLETE
 @pause -1
