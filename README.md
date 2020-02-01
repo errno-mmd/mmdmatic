@@ -7,7 +7,7 @@ English version (README.en.md) is also available.
 Windows上にMMD自動トレースの環境を(わりと簡単に)構築するインストーラです。
 下記のプログラム群をインストールします。
  - [tf-pose-estimation](https://github.com/errno-mmd/tf-pose-estimation)
- - [FCRN-DepthPrediction-vmd](https://github.com/miu200521358/FCRN-DepthPrediction-vmd)
+ - [mannequinchallenge-vmd](https://github.com/miu200521358/mannequinchallenge-vmd)
  - [3d-pose-baseline-vmd](https://github.com/miu200521358/3d-pose-baseline-vmd)
  - [VMD-3d-pose-baseline-multi](https://github.com/miu200521358/VMD-3d-pose-baseline-multi)
  - [MotionTraceBulk](https://github.com/errno-mmd/motion_trace_bulk/tree/mmdmatic)
@@ -40,18 +40,20 @@ Setting up the package cache ... と表示された後しばらく時間がか�
 - CUDAに対応したNVIDA GPUを搭載しているPCなら、代わりに tensorflow-gpu-install.bat を実行することで高速なGPU版をインストールできます。
 
 どちらを実行した場合でも、最初に "Proceed ([y]/n)?" と聞かれるので、y を入力してエンターキーを押します。
-最後に "COMPLETE" と表示されたら完了です。
+最後に "COMPLETE" と表示されるので、それを確認してから次に進んでください。
 
 ### Pythonパッケージのインストール
 
 package-install.bat を実行します。
+最後に "COMPLETE" と表示されるので、それを確認してから次に進んでください。
 
 ### 自動トレースの各ツールのインストール
 
 下記のバッチファイルを実行します。複数同時に実行しても大丈夫です。
+それぞれ最後に "COMPLETE" と表示されたことを確認してください。
 
 - 3dpose-install.bat
-- FCRN-install.bat
+- mannequin-install.bat
 - mtbulk-install.bat
 - tfpose-install.bat
 - VMD3d-install.bat
@@ -74,7 +76,7 @@ uninstall.bat を実行することでPythonパッケージおよび仮想環境
 なお、これらのツールが使っているデータセットに商用利用不可のもの(Human 3.6M)が含まれることに注意してください。
 
 - 3d-pose-baseline-vmd
-- FCRN-DepthPrediction-vmd
+- mannequinchallenge-vmd
 - motion_trace_bulk
 - tf-pose-estimation
 - VMD-3d-pose-baseline-multi

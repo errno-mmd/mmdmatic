@@ -5,7 +5,7 @@
 Mmdmatic is a suite of batch files which install MMD motion auto-trace tools (as follows) on Windows environment.
 
  - [tf-pose-estimation](https://github.com/errno-mmd/tf-pose-estimation)
- - [FCRN-DepthPrediction-vmd](https://github.com/miu200521358/FCRN-DepthPrediction-vmd)
+ - [mannequinchallenge-vmd](https://github.com/miu200521358/mannequinchallenge-vmd)
  - [3d-pose-baseline-vmd](https://github.com/miu200521358/3d-pose-baseline-vmd)
  - [VMD-3d-pose-baseline-multi](https://github.com/miu200521358/VMD-3d-pose-baseline-multi)
  - [MotionTraceBulk](https://github.com/errno-mmd/motion_trace_bulk/tree/mmdmatic)
@@ -49,7 +49,7 @@ Run package-install.bat
 Run the following batch files. You can run them in parallel.
 
 - 3dpose-install.bat
-- FCRN-install.bat
+- mannequin-install.bat
 - mtbulk-install.bat
 - tfpose-install.bat
 - VMD3d-install.bat
@@ -71,7 +71,7 @@ You can also uninstall Anaconda from "Control Panel" - "Programs and Features"
 Please see each tool's README and LICENSE files installed into following folders.
 
 - 3d-pose-baseline-vmd
-- FCRN-DepthPrediction-vmd
+- mannequinchallenge-vmd
 - motion_trace_bulk
 - tf-pose-estimation
 - VMD-3d-pose-baseline-multi
