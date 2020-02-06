@@ -23,7 +23,6 @@ call conda install -y requests || goto die
 call conda install -y scikit-image || goto die
 call conda install -y scipy || goto die
 call conda install -y tqdm || goto die
-call conda install -y pytorch torchvision -c pytorch || goto die
 call conda install -y pillow==6.2.1
 pip install fire || goto die
 pip install slidingwindow || goto die
