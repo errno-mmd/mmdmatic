@@ -1,5 +1,5 @@
 call activate mmdmat || goto die
-set TAG="mat1.03-2"
+set TAG="mat1.03-3"
 git clone --depth 1 -b %TAG% https://github.com/errno-mmd/3d-pose-baseline-vmd.git || goto die
 cd 3d-pose-baseline-vmd || goto die
 mkdir data || goto die
