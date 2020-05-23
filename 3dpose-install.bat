@@ -4,9 +4,14 @@ git clone --depth 1 -b %TAG% https://github.com/errno-mmd/3d-pose-baseline-vmd.g
 cd 3d-pose-baseline-vmd || goto die
 mkdir data || goto die
 cd data || goto die
-curl -L -O https://www.dropbox.com/s/e35qv3n6zlkouki/h36m.zip || goto die
+curl -sc cookie "https://drive.google.com/uc?id=1W5WoWpCcJvGm4CHoUhfIB0dgXBDCEHHq&export=download" > log.txt || goto die
+for /f "usebackq" %%t in (`awk '/_warning_/ {print $NF}' cookie`) do set TOKEN=%%t
+set MSG1="https://drive.google.com/uc?export=download&confirm="
+set MSG2="&id=1W5WoWpCcJvGm4CHoUhfIB0dgXBDCEHHq"
+set URL=%MSG1%%TOKEN%%MSG2%
+curl -Lb cookie %URL% -o h36m.zip || goto die
 unzip h36m.zip || goto die
-rm h36m.zip || goto die
+rm h36m.zip cookie log.txt || goto die
 cd .. || goto die
 curl -sc cookie "https://drive.google.com/uc?id=1SNeg6OhaE99OKB8GE6RDfSl3hnjnJ-K7&export=download" > log.txt || goto die
 for /f "usebackq" %%t in (`awk '/_warning_/ {print $NF}' cookie`) do set TOKEN=%%t
