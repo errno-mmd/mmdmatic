@@ -127,13 +127,19 @@ class AutoTraceFrame(wx.Frame):
             conf['add_leg'] = True
         if not 'no_bg' in conf:
             conf['no_bg'] = False
-        errmsg = autotracevmd(conf)
+        errmsg, result_dir = autotracevmd(conf)
         if errmsg is not None:
             wx.MessageBox(errmsg, 'ERROR', wx.OK | wx.ICON_ERROR, self)
             self.enable_all_buttons()
             self.SetStatusText('')
             return
         wx.MessageBox('auto-trace finished', 'COMPLETE', wx.OK | wx.ICON_NONE, self)
+        command = 'explorer {}'.format(result_dir)
+        proc = subprocess.Popen(command.split(), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, bufsize=1, encoding='utf-8')
+        while proc.poll() is None:
+            msg = proc.stdout.readline()
+            if msg:
+                sys.stdout.write(msg)          
         self.enable_all_buttons()
         self.SetStatusText('')
 

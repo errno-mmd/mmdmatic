@@ -2,11 +2,19 @@
 call conda --version
 if %errorlevel% neq 0 (
     echo Anaconda is not installed or broken.
-    echo ReInstall Anaconda first, then retry setup.
+    echo Install Anaconda first, then retry setup.
+    exit /b 1
+)
+
+if not exist tool\config.json (
+    echo Config file is not exist.
+    echo Run setup before running autotrace.
+    exit /b 1
 )
 
 call conda activate mmdmat || goto die
-start /min "" cmd /c python gui_autotrace.py
+set TF_FORCE_GPU_ALLOW_GROWTH=true
+cd tool && start /min "" cmd /c python gui_autotrace.py || goto die
 exit /b 0
 
 :die

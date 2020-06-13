@@ -135,28 +135,28 @@ def autotracevmd(conf):
 
     ret = estimate_pose2d(input_video, output_json_dir, pose2d_video, conf)
     if ret != 0:
-        return '2D pose estimation error'
+        return '2D pose estimation error', None
 
     # update dttm
     dttm = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
 
     ret = estimate_depth(input_video, output_json_dir, dttm, conf)
     if ret != 0:
-        return 'depth estimation error'
+        return 'depth estimation error', None
 
     for idx in range(1, conf['max_people'] + 1):
         output_sub_dir = pathlib.Path(str(output_json_dir) + '_' + dttm + '_idx0' + str(idx))
         ret = estimate_pose3d(output_sub_dir, conf)
         if ret != 0:
-            return '3D pose estimation error'
+            return '3D pose estimation error', None
         ret = pose3d_to_vmd(output_sub_dir, conf)
         if ret != 0:
-            return '3D pose -> VMD error'
+            return '3D pose -> VMD error', None
 
     if 'rfv_enable' in conf and conf['rfv_enable']:
         ret, sizing_src_vmd = add_face_motion(input_video, output_json_dir, input_video_filename, dttm, conf)
         if ret != 0:
-            return 'readfacevmd error'
+            return 'readfacevmd error', None
     else:
         vmd_output_dir = pathlib.Path(str(output_json_dir) + '_' + dttm + '_idx01')
         sizing_src_vmd = list(vmd_output_dir.glob('**/*_reduce.vmd'))[0].resolve()
@@ -165,8 +165,8 @@ def autotracevmd(conf):
       for replace_pmx in conf['sizing_replace_pmx_list']:
             ret = resize_motion(sizing_src_vmd, conf['sizing_trace_pmx'], replace_pmx, conf)
             if ret != 0:
-                return 'sizing error'
-    return None
+                return 'sizing error', None
+    return None, vmd_output_dir
 
 if __name__ == '__main__':
     config_file = pathlib.Path('config.json')

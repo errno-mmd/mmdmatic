@@ -2,15 +2,15 @@
 /archive/
 /output/
 /test_*
-/3d-pose-baseline-vmd/
-/FCRN-DepthPrediction-vmd/
-/tf-pose-estimation/
-/VMD-3d-pose-baseline-multi/
-/motion_trace_bulk/
-/mannequinchallenge-vmd/
-/readfacevmd/
+/tool/3d-pose-baseline-vmd*/
+/tool/FCRN-DepthPrediction-vmd*/
+/tool/tf-pose-estimation*/
+/tool/VMD-3d-pose-baseline-multi*/
+/tool/motion_trace_bulk*/
+/tool/mannequinchallenge-vmd*/
+/tool/readfacevmd*/
 
-config.json
+/tool/config.json
 
 *~
 TAGS

@@ -1,0 +1,2 @@
+pytorch=1.2.0=py3.7_cuda100_cudnn7_1
+torchvision=0.4.0=py37_cu100
