@@ -15,9 +15,9 @@ Mmdmatic is based on miu's MMD Auto Trace (local version), and it is modified to
 ## Supported platforms
 
 64-bit version of Windows 10 (32-bit versions are not supported).  
-NVIDIA GPU driver is needed if you run the tools on a GPU. 
-WARNING: If a GPU is not available, mannequinchallenge-vmd consumes a lot of memory.
-[Colab version](https://qiita.com/miu200521358/items/fb0a7bcf2764d7797e26) is recommended for GPU-less PCs.
+NVIDIA GPU driver is needed. 
+WARNING: If a NVIDIA GPU is not available, auto-trace process may freeze.
+[Cloud version](https://qiita.com/miu200521358/items/fb0a7bcf2764d7797e26) is recommended for GPU-less PCs.
 
 ## Installation
 
@@ -28,8 +28,8 @@ WARNING: If a GPU is not available, mannequinchallenge-vmd consumes a lot of mem
 
 ### Install Anaconda + Python
 
-1. Download an Anaconda installer for Windows from https://www.anaconda.com/distribution/ .
-Please select Python 3.x version 64-bit Graphical Installer.
+1. Download an Anaconda installer for Windows from https://www.anaconda.com/products/individual .
+Please select Python 3.7 version 64-bit Graphical Installer.
 
 2. Run the installer.
 In "Advanced Options", check the "Add Anaconda to my PATH environment variable" option.
@@ -38,7 +38,7 @@ You can leave any other options as default and simply click "Next".
 ### Install Tensorflow
 
 1. If you prefer to use a GPU, run tensorflow-gpu-install.bat.
-Otherwise, run tensorflow-install.bat.
+Otherwise, run tensorflow-install.bat (not recommended).
 2. If the batch ask you "Continue creating environment (y/[n])?", press Y and then press Enter.
 3. When the batch ask you "Proceed ([y]/n)?", press Y and then press Enter.
 4. The batch shows "COMPLETE" when the installation finished successfully.
@@ -84,9 +84,9 @@ In other words, please avoid using the MMD motion auto-trace commercially.
 
 This program (mmdmatic) itself is under MIT license. Please see LICENSE file for details.
 
-## Contact
+## Bug report
 
-If you find a bug, or have something to ask, please contact me.
+If you find a bug, please contact me.
 
 - Create an "issue" on GitHub  
   https://github.com/errno-mmd/mmdmatic/issues
