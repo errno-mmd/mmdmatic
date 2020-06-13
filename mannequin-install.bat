@@ -3,7 +3,6 @@ set TAG="mat1.03"
 git clone --depth 1 -b %TAG% https://github.com/errno-mmd/mannequinchallenge-vmd.git || goto die
 cd mannequinchallenge-vmd || goto die
 bash fetch_checkpoints.sh || goto die
-bash fetch_davis_data.sh || goto die
 
 @echo COMPLETE
 @pause -1
