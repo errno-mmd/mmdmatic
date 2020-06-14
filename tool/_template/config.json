@@ -1,0 +1,11 @@
+{
+    "tfpose_dir": "./tf-pose-estimation",
+    "depth_dir": "./mannequinchallenge-vmd",
+    "pose3d_dir": "./3d-pose-baseline-vmd",
+    "vmd3d_dir": "./VMD-3d-pose-baseline-multi",
+    "rfv_dir": "",
+    "sizing_dir": "",
+    "rfv_enable": false,
+    "no_bg": false,
+    "vmd3d_bone_csv": "born/animasa_miku_born.csv"
+}

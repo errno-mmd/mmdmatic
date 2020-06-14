@@ -2,13 +2,12 @@
 
 ## Abstruct
 
-Mmdmatic is a suite of batch files which install MMD motion auto-trace tools (as follows) on Windows environment.
+Mmdmatic is a suite of scripts which install MMD motion auto-trace tools (as follows) on Windows environment.
 
  - [tf-pose-estimation](https://github.com/errno-mmd/tf-pose-estimation)
  - [mannequinchallenge-vmd](https://github.com/miu200521358/mannequinchallenge-vmd)
  - [3d-pose-baseline-vmd](https://github.com/miu200521358/3d-pose-baseline-vmd)
  - [VMD-3d-pose-baseline-multi](https://github.com/miu200521358/VMD-3d-pose-baseline-multi)
- - [MotionTraceBulk](https://github.com/errno-mmd/motion_trace_bulk/tree/mmdmatic)
 
 Mmdmatic is based on miu's MMD Auto Trace (local version), and it is modified to deploy tf-pose-estimation instead of OpenPose for easier installation.
 
@@ -16,7 +15,6 @@ Mmdmatic is based on miu's MMD Auto Trace (local version), and it is modified to
 
 64-bit version of Windows 10 (32-bit versions are not supported).  
 NVIDIA GPU driver is needed. 
-WARNING: If a NVIDIA GPU is not available, auto-trace process may freeze.
 [Cloud version](https://qiita.com/miu200521358/items/fb0a7bcf2764d7797e26) is recommended for GPU-less PCs.
 
 ## Installation
@@ -32,36 +30,24 @@ WARNING: If a NVIDIA GPU is not available, auto-trace process may freeze.
 Please select Python 3.7 version 64-bit Graphical Installer.
 
 2. Run the installer.
-In "Advanced Options", check the "Add Anaconda to my PATH environment variable" option.
+In "Advanced Options", check the "Add Anaconda3 to my PATH environment variable" option.
 You can leave any other options as default and simply click "Next".
 
-### Install Tensorflow
+### Install tools and packages
 
-1. If you prefer to use a GPU, run tensorflow-gpu-install.bat.
-Otherwise, run tensorflow-install.bat (not recommended).
-2. If the batch ask you "Continue creating environment (y/[n])?", press Y and then press Enter.
-3. When the batch ask you "Proceed ([y]/n)?", press Y and then press Enter.
-4. The batch shows "COMPLETE" when the installation finished successfully.
-
-### Install Python packages
-
-Run package-install.bat
-
-### Install MMD motion auto-trace tools
-
-Run the following batch files. You can run them in parallel.
-
-- 3dpose-install.bat
-- mannequin-install.bat
-- mtbulk-install.bat
-- tfpose-install.bat
-- VMD3d-install.bat
+1. Run setup.bat
+2. Click "Install" button on "mmdmatic setup" window.  
+   Install process takes a long time. Please wait with patience.
+3. When 'installation finished' message appears, you can close the mmdmatic setup window.
 
 ## How to run
 
-Run MotionTraceBulk_en.bat in motion_trace_bulk folder and answer to the questions the batch asks.  
-(You can find more detailed instruction in motion_trace_bulk/README.md, but it is written in Japanese)
-
+1. Run autotracevmd.bat
+2. Click "Select" button and select a video file to analyze.
+3. Click "Run" button to start auto-trace.  
+   Auto-trace process may take a long time depending on the length of the video and GPU performance.
+4. When 'auto-trace finished' message appears, click "OK" button.
+5. A new folder opens automatically. You can find the generated VMD file in the folder.
 
 ## Uninstallation
 
@@ -73,10 +59,9 @@ You can also uninstall Anaconda from "Control Panel" - "Programs and Features"
 
 Please see each tool's README and LICENSE files installed into following folders.
 
-- 3d-pose-baseline-vmd
-- mannequinchallenge-vmd
-- motion_trace_bulk
 - tf-pose-estimation
+- mannequinchallenge-vmd
+- 3d-pose-baseline-vmd
 - VMD-3d-pose-baseline-multi
 
 Please note that MMD motion auto-trace uses a neural network model trained with a dataset (Human 3.6M) which can be used for non-commercial purposes only.
