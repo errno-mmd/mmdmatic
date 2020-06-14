@@ -8,6 +8,9 @@
 /VMD-3d-pose-baseline-multi/
 /motion_trace_bulk/
 /mannequinchallenge-vmd/
+/readfacevmd/
+
+config.json
 
 *~
 TAGS
@@ -47,3 +50,5 @@ GPATH
 *.exe
 *.out
 *.app
+
+__pycache__
