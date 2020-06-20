@@ -9,6 +9,7 @@ import os
 import pathlib
 import subprocess
 import sys
+import ffmpeg
 
 logger = logging.getLogger(__name__)
 
@@ -20,6 +21,37 @@ def run_command(command, **kwargs):
         if msg:
             sys.stdout.write(msg)    
     return proc.returncode
+
+def resize_video(input_file, output_file, width, height, convert_fps):
+    fps_target = 30.0
+    probe = ffmpeg.probe(input_file)
+    video_stream = next((stream for stream in probe['streams'] if stream['codec_type'] == 'video'), None)
+    width_in = int(video_stream['width'])
+    height_in = int(video_stream['height'])
+    rate = video_stream['r_frame_rate'].split('/')
+    fps_in = float(rate[0]) / float(rate[1])
+    stream = ffmpeg.input(input_file)
+    if width == width_in and height == height_in:
+        pass
+    else:
+        if width / height == width_in / height_in:
+            stream = ffmpeg.filter(stream, 'scale', width=width, height=height)
+        elif width / height > width_in / height_in:
+            w = int(height * width_in / height_in / 2) * 2
+            pad_x = int((width - w) / 2)
+            stream = ffmpeg.filter(stream, 'scale', width=w, height=height)
+            stream = ffmpeg.filter(stream, 'pad', width=width, height=height, x=pad_x, y=0, color='black')
+        else:
+            h = int(width * height_in / width_in / 2) * 2
+            pad_y = int((height - h) / 2)
+            stream = ffmpeg.filter(stream, 'scale', width=width, height=h)
+            stream = ffmpeg.filter(stream, 'pad', width=width, height=height, x=0, y=pad_y, color='black')
+
+    if convert_fps and fps_in != fps_target:
+        stream = ffmpeg.filter(stream, 'framerate', fps=fps_target)
+
+    stream = ffmpeg.output(stream, output_file)
+    ffmpeg.run(stream, overwrite_output=True)
 
 def estimate_pose2d(input_video, output_json_dir, pose2d_video, conf):
     # tf-pose-estimation
@@ -132,15 +164,22 @@ def autotracevmd(conf):
     output_json_dir = output_dir / (input_video_filename + '_' + dttm) / (input_video_filename + '_json')
     output_json_dir.mkdir(parents=True, exist_ok=True)
     pose2d_video = output_dir / (input_video_filename + '_' + dttm) / (input_video_filename + '_openpose.avi')
+    modified_video = output_dir / (input_video_filename + '_' + dttm) / (input_video_filename + '_modified.mp4')
+    if conf['resize'] or conf['convert_fps']:
+        width = conf['resize_width']
+        height = conf['resize_height']
+        resize_video(str(input_video), str(modified_video), width, height, conf['convert_fps'])
+    else:
+        modified_video = input_video
 
-    ret = estimate_pose2d(input_video, output_json_dir, pose2d_video, conf)
+    ret = estimate_pose2d(modified_video, output_json_dir, pose2d_video, conf)
     if ret != 0:
         return '2D pose estimation error', None
 
     # update dttm
     dttm = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
 
-    ret = estimate_depth(input_video, output_json_dir, dttm, conf)
+    ret = estimate_depth(modified_video, output_json_dir, dttm, conf)
     if ret != 0:
         return 'depth estimation error', None
 
@@ -154,7 +193,7 @@ def autotracevmd(conf):
             return '3D pose -> VMD error', None
 
     if 'rfv_enable' in conf and conf['rfv_enable']:
-        ret, sizing_src_vmd = add_face_motion(input_video, output_json_dir, input_video_filename, dttm, conf)
+        ret, sizing_src_vmd = add_face_motion(modified_video, output_json_dir, input_video_filename, dttm, conf)
         if ret != 0:
             return 'readfacevmd error', None
     else:

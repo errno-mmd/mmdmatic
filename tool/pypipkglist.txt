@@ -1,2 +1,4 @@
+ffmpeg-python==0.2.0
 fire==0.3.1
+future==0.18.2
 slidingwindow==0.0.13

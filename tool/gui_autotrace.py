@@ -30,19 +30,34 @@ class AutoTraceFrame(wx.Frame):
         hsizer1.Add(self.txt_input_video, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 3)
         hsizer1.Add(self.button_selectfile, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 3)
 
+        self.resize_resolution = [(1280, 720), (1280, 960), (1920, 1080)]
+        self.check_resize = wx.CheckBox(panel, wx.ID_ANY, 'resize to:')
+        self.check_resize.SetValue(True)
+        self.choice_resize = wx.Choice(panel, wx.ID_ANY)
+        for w, h in self.resize_resolution:
+            sizestr = '{}x{}'.format(w, h)
+            self.choice_resize.Append(sizestr)
+        self.choice_resize.SetSelection(0)
+        self.check_convfps = wx.CheckBox(panel, wx.ID_ANY, 'convert to 30fps')
+        self.check_convfps.SetValue(True)
         self.label_maxpeople = wx.StaticText(panel, wx.ID_ANY, 'max number of people')
         self.spin_maxpeople = wx.SpinCtrl(panel, wx.ID_ANY, "", min=1, max=100, initial=1)
-        blank1 = wx.StaticText(panel, wx.ID_ANY, '')
-        blank2 = wx.StaticText(panel, wx.ID_ANY, '')
         self.label_firstframe = wx.StaticText(panel, wx.ID_ANY, 'first frame to analyze')
         self.spin_firstframe = wx.SpinCtrl(panel, wx.ID_ANY, "", min=0, max=100000, initial=0)
         self.label_lastframe = wx.StaticText(panel, wx.ID_ANY, 'last frame to analyze')
         self.spin_lastframe = wx.SpinCtrl(panel, wx.ID_ANY, "", min=-1, max=100000, initial=-1)
+        blank1 = wx.StaticText(panel, wx.ID_ANY, '')
+        blank2 = wx.StaticText(panel, wx.ID_ANY, '')
+        blank3 = wx.StaticText(panel, wx.ID_ANY, '')
         gsizer1 = wx.FlexGridSizer(4, 2, 2)
+        gsizer1.Add(self.check_resize, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 3)
+        gsizer1.Add(self.choice_resize, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 3)
+        gsizer1.Add(self.check_convfps, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 3)
+        gsizer1.Add(blank1, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 3)
         gsizer1.Add(self.label_maxpeople, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 3)
         gsizer1.Add(self.spin_maxpeople, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 3)
-        gsizer1.Add(blank1, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 3)
         gsizer1.Add(blank2, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 3)
+        gsizer1.Add(blank3, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 3)
         gsizer1.Add(self.label_firstframe, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 3)
         gsizer1.Add(self.spin_firstframe, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 3)
         gsizer1.Add(self.label_lastframe, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 3)
@@ -136,6 +151,13 @@ class AutoTraceFrame(wx.Frame):
             conf['log_level'] = 3
         else:
             conf['log_level'] = 1
+        resolution_idx = self.choice_resize.GetSelection()
+        width, height = self.resize_resolution[resolution_idx]
+        conf['resize_width'] = width
+        conf['resize_height'] = height
+        conf['resize'] = self.check_resize.GetValue()
+        conf['convert_fps'] = self.check_convfps.GetValue()
+
         errmsg, result_dir = autotracevmd(conf)
         if errmsg is not None:
             wx.MessageBox(errmsg, 'ERROR', wx.OK | wx.ICON_ERROR, self)
