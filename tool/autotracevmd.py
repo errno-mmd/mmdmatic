@@ -22,8 +22,7 @@ def run_command(command, **kwargs):
             sys.stdout.write(msg)    
     return proc.returncode
 
-def resize_video(input_file, output_file, width, height, convert_fps):
-    fps_target = 30.0
+def convert_video(input_file, output_file, width, height, fps, resize, change_fps):
     probe = ffmpeg.probe(input_file)
     video_stream = next((stream for stream in probe['streams'] if stream['codec_type'] == 'video'), None)
     width_in = int(video_stream['width'])
@@ -31,9 +30,7 @@ def resize_video(input_file, output_file, width, height, convert_fps):
     rate = video_stream['r_frame_rate'].split('/')
     fps_in = float(rate[0]) / float(rate[1])
     stream = ffmpeg.input(input_file)
-    if width == width_in and height == height_in:
-        pass
-    else:
+    if resize and (width != width_in or height != height_in):
         if width / height == width_in / height_in:
             stream = ffmpeg.filter(stream, 'scale', width=width, height=height)
         elif width / height > width_in / height_in:
@@ -47,8 +44,8 @@ def resize_video(input_file, output_file, width, height, convert_fps):
             stream = ffmpeg.filter(stream, 'scale', width=width, height=h)
             stream = ffmpeg.filter(stream, 'pad', width=width, height=height, x=0, y=pad_y, color='black')
 
-    if convert_fps and fps_in != fps_target:
-        stream = ffmpeg.filter(stream, 'framerate', fps=fps_target)
+    if change_fps and fps_in != fps:
+        stream = ffmpeg.filter(stream, 'framerate', fps=fps)
 
     stream = ffmpeg.output(stream, output_file)
     ffmpeg.run(stream, overwrite_output=True)
@@ -165,10 +162,11 @@ def autotracevmd(conf):
     output_json_dir.mkdir(parents=True, exist_ok=True)
     pose2d_video = output_dir / (input_video_filename + '_' + dttm) / (input_video_filename + '_openpose.avi')
     modified_video = output_dir / (input_video_filename + '_' + dttm) / (input_video_filename + '_modified.mp4')
-    if conf['resize'] or conf['convert_fps']:
+    if conf['resize'] or conf['change_fps']:
         width = conf['resize_width']
         height = conf['resize_height']
-        resize_video(str(input_video), str(modified_video), width, height, conf['convert_fps'])
+        fps = 30.0
+        convert_video(str(input_video), str(modified_video), width, height, fps, conf['resize'], conf['change_fps'])
     else:
         modified_video = input_video
 

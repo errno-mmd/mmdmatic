@@ -38,8 +38,8 @@ class AutoTraceFrame(wx.Frame):
             sizestr = '{}x{}'.format(w, h)
             self.choice_resize.Append(sizestr)
         self.choice_resize.SetSelection(0)
-        self.check_convfps = wx.CheckBox(panel, wx.ID_ANY, 'convert to 30fps')
-        self.check_convfps.SetValue(True)
+        self.check_changefps = wx.CheckBox(panel, wx.ID_ANY, 'convert to 30fps')
+        self.check_changefps.SetValue(True)
         self.label_maxpeople = wx.StaticText(panel, wx.ID_ANY, 'max number of people')
         self.spin_maxpeople = wx.SpinCtrl(panel, wx.ID_ANY, "", min=1, max=100, initial=1)
         self.label_firstframe = wx.StaticText(panel, wx.ID_ANY, 'first frame to analyze')
@@ -52,7 +52,7 @@ class AutoTraceFrame(wx.Frame):
         gsizer1 = wx.FlexGridSizer(4, 2, 2)
         gsizer1.Add(self.check_resize, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 3)
         gsizer1.Add(self.choice_resize, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 3)
-        gsizer1.Add(self.check_convfps, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 3)
+        gsizer1.Add(self.check_changefps, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 3)
         gsizer1.Add(blank1, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 3)
         gsizer1.Add(self.label_maxpeople, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 3)
         gsizer1.Add(self.spin_maxpeople, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 3)
@@ -156,7 +156,7 @@ class AutoTraceFrame(wx.Frame):
         conf['resize_width'] = width
         conf['resize_height'] = height
         conf['resize'] = self.check_resize.GetValue()
-        conf['convert_fps'] = self.check_convfps.GetValue()
+        conf['change_fps'] = self.check_changefps.GetValue()
 
         errmsg, result_dir = autotracevmd(conf)
         if errmsg is not None:
