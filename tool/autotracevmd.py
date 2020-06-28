@@ -121,8 +121,8 @@ def pose3d_to_vmd(output_sub_dir, conf):
 def add_face_motion(input_video, output_json_dir, input_video_filename, dttm, conf):
     rfv_output_dir = pathlib.Path(str(output_json_dir) + '_' + dttm + '_idx01')
     face_vmd_file = rfv_output_dir / (input_video_filename + '-face.vmd')
-    rfv_args = ['./readfacevmd',
-                str(input_video), str(face_vmd_file)]
+    cmd = str(pathlib.Path(conf['rfv_dir']).resolve() / 'readfacevmd')
+    rfv_args = [cmd, str(input_video), str(face_vmd_file)]
     if 'rfv_nameconf' in conf:
         rfv_args.extend(['--nameconf', conf['rfv_nameconf']])
     logger.debug('rfv_args:' + str(rfv_args))
@@ -132,7 +132,8 @@ def add_face_motion(input_video, output_json_dir, input_video_filename, dttm, co
 
     body_vmd_file = list(rfv_output_dir.glob('**/*_reduce.vmd'))[0].resolve()
     merged_vmd_file = rfv_output_dir / (input_video_filename + '-merged.vmd')
-    merge_args = ['./mergevmd', str(body_vmd_file), str(face_vmd_file), str(merged_vmd_file)]
+    cmd = str(pathlib.Path(conf['rfv_dir']).resolve() / 'mergevmd')
+    merge_args = [cmd, str(body_vmd_file), str(face_vmd_file), str(merged_vmd_file)]
     logger.debug('merge_args:' + str(merge_args))
     ret = run_command(merge_args, cwd=conf['rfv_dir'])
     return ret, merged_vmd_file
@@ -190,12 +191,12 @@ def autotracevmd(conf):
         if ret != 0:
             return '3D pose -> VMD error', None
 
+    vmd_output_dir = pathlib.Path(str(output_json_dir) + '_' + dttm + '_idx01')
     if 'rfv_enable' in conf and conf['rfv_enable']:
         ret, sizing_src_vmd = add_face_motion(modified_video, output_json_dir, input_video_filename, dttm, conf)
         if ret != 0:
             return 'readfacevmd error', None
     else:
-        vmd_output_dir = pathlib.Path(str(output_json_dir) + '_' + dttm + '_idx01')
         sizing_src_vmd = list(vmd_output_dir.glob('**/*_reduce.vmd'))[0].resolve()
 
     if 'sizing_trace_pmx' in conf and 'sizing_replace_pmx_list' in conf:
