@@ -12,8 +12,10 @@ import shutil
 import os
 import json
 import signal
+import re
 from threading import Thread
 from queue import Queue, Empty
+import make_checksum
 
 def download_googledrive(id, filename):
     url = 'https://drive.google.com/uc?id={}&export=download'.format(id)
@@ -59,6 +61,15 @@ def download_extract(url, zipname, dirname):
     with zipfile.ZipFile(zipname) as zip:
         zip.extractall(dirname)
     os.remove(zipname)
+
+def download_file(url, filename):
+    print('downloading {}...'.format(url))
+    req = requests.get(url, allow_redirects=True)
+    if req.status_code != requests.codes.ok:
+        errmsg = 'download error: status={}: url={}'.format(req.status_code, url)
+        return errmsg
+    with open(filename, 'wb') as f:
+        f.write(req.content)
 
 class SetupFrame(wx.Frame):
     ''' mmdmatic setup frame
@@ -112,10 +123,11 @@ class SetupFrame(wx.Frame):
     def install_all(self):
         methods = [
             self.install_packages,
-            self.install_3dpose,
-            self.install_mannequinchallenge,
-            self.install_tfpose,
-            self.install_VMD3d
+#            self.install_3dpose,
+#            self.install_mannequinchallenge,
+#            self.install_tfpose,
+#            self.install_VMD3d
+            self.install_tools
             ]
         for f in methods:
             errmsg = f()
@@ -143,6 +155,50 @@ class SetupFrame(wx.Frame):
             if ret != 0:
                 return 'Install package error. retry later'
         return None
+
+    def install_tools(self):
+        checksum_file = 'checksum.json'
+        checksum_path = pathlib.Path(checksum_file)
+        with checksum_path.open() as fin:
+            check_conf = json.load(fin)        
+        tmppath = pathlib.Path('tmp')
+        tmppath.mkdir(exist_ok=True)
+        for toolname, dllist in check_conf.items():
+            self.SetStatusText('installing {}'.format(toolname))
+            for zipname, dic in dllist.items():
+                dirname = dic['dir']
+                dirpath = pathlib.Path(dirname).resolve()
+                checksumlist = dic['checksum']
+                up2date = True
+                for filename, sum in checksumlist.items():
+                    filepath = dirpath / filename
+                    if filepath.is_file():
+                        s = make_checksum.calc_checksum(str(filepath))
+                        if s == sum:
+                            continue
+                    up2date = False
+                    break
+                if up2date:
+                    print('Skip downloading {}: all files are up to date'.format(zipname))
+                    continue
+                else:
+                    dirpath.mkdir(exist_ok=True)
+                    if 'url' in dic:
+                        url = dic['url']
+                        if re.search(r"\.zip$", zipname):
+                            filepath = tmppath / zipname
+                            download_extract(url, str(filepath), dirname)
+                        else:
+                            filepath = dirpath / zipname
+                            download_file(url, str(filepath))
+                    else:
+                        id = dic['id']
+                        if re.search(r"\.zip$", zipname):
+                            filepath = tmppath / zipname
+                            extract_from_googledrive(id, str(filepath), dirname)
+                        else:
+                            filepath = dirpath / zipname
+                            download_googledrive(id, str(filepath))
 
     def install_3dpose(self):
         self.SetStatusText('installing 3d-pose-baseline-vmd')
@@ -207,7 +263,7 @@ class SetupFrame(wx.Frame):
         if errmsg is not None:
             return errmsg
 
-        url = ' https://github.com/errno-mmd/tf-pose-estimation/releases/download/mmdmatic1.02.01/_pafprocess.cp37-win_amd64.pyd'
+        url = 'https://github.com/errno-mmd/tf-pose-estimation/releases/download/mmdmatic1.02.01/_pafprocess.cp37-win_amd64.pyd'
         filename = './tf-pose-estimation-{}/tf_pose/pafprocess/_pafprocess.cp37-win_amd64.pyd'.format(tag)
         print('downloading {}...'.format(url))
         req = requests.get(url)

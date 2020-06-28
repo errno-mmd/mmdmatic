@@ -127,12 +127,22 @@ class AutoTraceFrame(wx.Frame):
         self.thread.start()
 
     def run_trace(self, video_file):
+        need_setup = False
+        config_template_file = pathlib.Path('_template/config.json')
+        with config_template_file.open() as ftmpl:
+            conf_tmpl = json.load(ftmpl)
         config_file = pathlib.Path('config.json')
         if config_file.is_file():
             with config_file.open() as fconf:
                 conf = json.load(fconf)
+            if not 'version' in conf or conf['version'] != conf_tmpl['version']:
+                need_setup = True
         else:
-            conf = {}
+            need_setup = True
+        if need_setup:
+            wx.MessageBox('Run setup before running autotracevmd')
+            return
+
         conf['VIDEO_FILE'] = video_file
         if not 'output_dir' in conf:
             conf['output_dir'] = ''

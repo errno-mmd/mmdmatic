@@ -9,8 +9,10 @@
 /tool/motion_trace_bulk*/
 /tool/mannequinchallenge-vmd*/
 /tool/readfacevmd*/
+/tool/tmp/
 
 /tool/config.json
+/tool/checksum.json
 
 *~
 TAGS
