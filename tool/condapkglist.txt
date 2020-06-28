@@ -9,7 +9,7 @@ blinker=1.4=py37_0
 brotlipy=0.7.0=py37he774522_1000
 ca-certificates=2020.1.1=0
 cachetools=4.1.0=py_1
-certifi=2020.4.5.2=py37_0
+certifi=2020.6.20=py37_0
 cffi=1.14.0=py37h7a1dbc1_0
 chardet=3.0.4=py37_1003
 click=7.1.2=py_0

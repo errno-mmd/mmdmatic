@@ -9,7 +9,7 @@ if %errorlevel% neq 0 (
 
 if not exist tool\config.json (
     echo Config file is not exist.
-    echo Run setup before running autotrace.
+    echo Run setup before running autotracevmd.
     exit /b 1
 )
 

@@ -1,0 +1,54 @@
+{
+    "tf-pose-estimation": {
+        "tf-pose-estimation-mat1.03.zip": {
+            "url": "https://github.com/errno-mmd/tf-pose-estimation/archive/mat1.03.zip",
+            "dir": "."
+        },
+        "pycocotools.zip": {
+            "url": "https://github.com/errno-mmd/tf-pose-estimation/releases/download/mmdmatic1.02.01/pycocotools.zip",
+            "dir": "tf-pose-estimation-mat1.03"
+        },
+        "_pafprocess.cp37-win_amd64.pyd": {
+            "url": "https://github.com/errno-mmd/tf-pose-estimation/releases/download/mmdmatic1.02.01/_pafprocess.cp37-win_amd64.pyd",
+            "dir": "tf-pose-estimation-mat1.03/tf_pose/pafprocess"
+        }
+    },
+    "mannequinchallenge-vmd": {
+        "mannequinchallenge-vmd-ver1.03.02.zip": {
+            "url": "https://github.com/miu200521358/mannequinchallenge-vmd/archive/ver1.03.02.zip",
+            "dir": "."
+        },
+        "best_depth_Ours_Bilinear_inc_3_net_G.pth": {
+            "url": "https://storage.googleapis.com/mannequinchallenge-data/checkpoints/best_depth_Ours_Bilinear_inc_3_net_G.pth",
+            "dir": "mannequinchallenge-vmd-ver1.03.02/checkpoints/test_local"
+        },
+        "best_depth_Ours_Bilinear_inc_6_net_G.pth": {
+            "url": "https://storage.googleapis.com/mannequinchallenge-data/checkpoints/best_depth_Ours_Bilinear_inc_6_net_G.pth",
+            "dir": "mannequinchallenge-vmd-ver1.03.02/checkpoints/test_local"
+        },
+        "best_depth_Ours_Bilinear_inc_7_net_G.pth": {
+            "url": "https://storage.googleapis.com/mannequinchallenge-data/checkpoints/best_depth_Ours_Bilinear_inc_7_net_G.pth",
+            "dir": "mannequinchallenge-vmd-ver1.03.02/checkpoints/test_local"
+        }
+    },
+    "3d-pose-baseline-vmd": {
+        "3d-pose-baseline-vmd-mat1.03-3.zip": {
+            "url": "https://github.com/errno-mmd/3d-pose-baseline-vmd/archive/mat1.03-3.zip",
+            "dir": "."
+        },
+        "h36m.zip": {
+            "id": "1dr1LKWEA3L6cuSeljS5h-tzPqc0jyOAR",
+            "dir": "3d-pose-baseline-vmd-mat1.03-3/data"        
+        },
+        "experiments.zip": {
+            "id": "1SNeg6OhaE99OKB8GE6RDfSl3hnjnJ-K7",
+            "dir": "3d-pose-baseline-vmd-mat1.03-3"
+        }   
+    },
+    "VMD-3d-pose-baseline-multi": {
+        "VMD-3d-pose-baseline-multi-ver1.03.zip": {
+            "url": "https://github.com/miu200521358/VMD-3d-pose-baseline-multi/archive/ver1.03.zip",
+            "dir": "."
+        }
+    }
+}

@@ -19,6 +19,8 @@ NVIDIA GPU driver is needed.
 
 ## Installation
 
+(If you have already installed a previous version, you can update them without whole new installation. Please refer 'Update' section.)
+
 ### Extract the archive (or git clone)
 
 1. Download the ZIP archive of this program from GitHub repository.
@@ -54,6 +56,15 @@ You can leave any other options as default and simply click "Next".
 uninstall.bat will remove Python packages and virtual environment installed/created by the installer.  
 Then you can remove the folder (e.g. C:\App\mmdmatic) which contains the batch files and the tools.  
 You can also uninstall Anaconda from "Control Panel" - "Programs and Features"
+
+## Update
+
+If you have already installed a previous version, you can update them by following steps.
+
+1. Download the ZIP archive of this program from GitHub repository.
+2. Move all files/folders from the ZIP archive into the folder which contains a previous version (e.g. C:\App\mmdmatic).
+3. Run setup.bat and click "Install" button.
+4. When 'installation finished' message appears, you can close the mmdmatic setup window.
 
 ## License
 

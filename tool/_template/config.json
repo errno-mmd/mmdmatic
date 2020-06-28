@@ -1,8 +1,9 @@
 {
-    "tfpose_dir": "./tf-pose-estimation",
-    "depth_dir": "./mannequinchallenge-vmd",
-    "pose3d_dir": "./3d-pose-baseline-vmd",
-    "vmd3d_dir": "./VMD-3d-pose-baseline-multi",
+    "version": "2.0.1",
+    "tfpose_dir": "./tf-pose-estimation-mat1.03",
+    "depth_dir": "./mannequinchallenge-vmd-ver1.03.02",
+    "pose3d_dir": "./3d-pose-baseline-vmd-mat1.03-3",
+    "vmd3d_dir": "./VMD-3d-pose-baseline-multi-ver1.03",
     "rfv_dir": "",
     "sizing_dir": "",
     "rfv_enable": false,
