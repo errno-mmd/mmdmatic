@@ -12,7 +12,6 @@
 /tool/tmp/
 
 /tool/config.json
-/tool/checksum.json
 
 *~
 TAGS
