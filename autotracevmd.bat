@@ -15,7 +15,7 @@ if not exist tool\config.json (
 
 call conda activate --no-stack mmdmat || goto die
 set TF_FORCE_GPU_ALLOW_GROWTH=true
-cd tool && start pythonw gui_autotrace.py && cd .. || goto die
+cd tool && start /min cmd /c python gui_autotrace.py && cd .. || goto die
 call conda deactivate
 exit /b 0
 

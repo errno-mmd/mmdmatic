@@ -15,7 +15,7 @@ call conda create --yes --force -n mmdmat python=3.7 || goto die
 call conda activate --no-stack mmdmat || goto die
 call conda install -y wxpython requests conda || goto die
 
-cd tool && start pythonw setup.py && cd .. || goto die
+cd tool && start /min cmd /c python setup.py && cd .. || goto die
 call conda deactivate
 exit /b 0
 
