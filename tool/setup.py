@@ -162,12 +162,13 @@ class SetupFrame(wx.Frame):
         with checksum_path.open() as fin:
             check_conf = json.load(fin)        
         tmppath = pathlib.Path('tmp')
-        tmppath.mkdir(exist_ok=True)
+        tmppath.mkdir(parents=True, exist_ok=True)
         for toolname, dllist in check_conf.items():
             self.SetStatusText('installing {}'.format(toolname))
             for zipname, dic in dllist.items():
                 dirname = dic['dir']
                 dirpath = pathlib.Path(dirname).resolve()
+                dirpath.mkdir(parents=True, exist_ok=True)
                 checksumlist = dic['checksum']
                 up2date = True
                 for filename, sum in checksumlist.items():
@@ -182,7 +183,7 @@ class SetupFrame(wx.Frame):
                     print('Skip downloading {}: all files are up to date'.format(zipname))
                     continue
                 else:
-                    dirpath.mkdir(exist_ok=True)
+                    dirpath.mkdir(parents=True, exist_ok=True)
                     if 'url' in dic:
                         url = dic['url']
                         if re.search(r"\.zip$", zipname):
