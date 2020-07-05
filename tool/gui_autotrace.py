@@ -30,7 +30,7 @@ class AutoTraceFrame(wx.Frame):
         hsizer1.Add(self.txt_input_video, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 3)
         hsizer1.Add(self.button_selectfile, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 3)
 
-        self.resize_resolution = [(1280, 720), (1280, 960), (1920, 1080)]
+        self.resize_resolution = [(1280, 720), (1280, 960), (1920, 1080), (2560, 1440), (3840, 2160)]
         self.check_resize = wx.CheckBox(panel, wx.ID_ANY, 'resize to:')
         self.check_resize.SetValue(True)
         self.choice_resize = wx.Choice(panel, wx.ID_ANY)
@@ -98,11 +98,31 @@ class AutoTraceFrame(wx.Frame):
         pass
 
     def disable_all_buttons(self):
+        self.txt_input_video.Disable()
         self.button_selectfile.Disable()
+        self.check_resize.Disable()
+        self.choice_resize.Disable()
+        self.check_changefps.Disable()
+        self.spin_maxpeople.Disable()
+        self.spin_firstframe.Disable()
+        self.spin_lastframe.Disable()
+        self.txt_reversespec.Disable()
+        self.txt_orderspec.Disable()
+        self.check_verbose.Disable()
         self.button_run.Disable()
 
     def enable_all_buttons(self):
+        self.txt_input_video.Enable()
         self.button_selectfile.Enable()
+        self.check_resize.Enable()
+        self.choice_resize.Enable()
+        self.check_changefps.Enable()
+        self.spin_maxpeople.Enable()
+        self.spin_firstframe.Enable()
+        self.spin_lastframe.Enable()
+        self.txt_reversespec.Enable()
+        self.txt_orderspec.Enable()
+        self.check_verbose.Enable()
         self.button_run.Enable()
 
     def click_selectfile(self, event):
