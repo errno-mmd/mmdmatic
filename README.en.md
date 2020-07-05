@@ -14,8 +14,11 @@ Mmdmatic is based on miu's MMD Auto Trace (local version), and it is modified to
 ## Supported platforms
 
 64-bit version of Windows 10 (32-bit versions are not supported).  
-NVIDIA GPU driver is needed. 
+NVIDIA GPU (with 4GB VRAM or more) is needed. 
 [Cloud version](https://qiita.com/miu200521358/items/fb0a7bcf2764d7797e26) is recommended for GPU-less PCs.
+
+About 20 GB of disk space is needed.
+A flat-rate pricing Internet access is also needed for downloading a massive amount of tools and data.
 
 ## Installation
 

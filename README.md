@@ -17,8 +17,11 @@ MMD自動トレースについて詳しくは[MMDモーショントレース自�
 ## 動作環境
 
 64bit版 Windows 10 で動作します(32bit版Windowsは非サポート)。
-NVIDIA GPU が必要です。NVIDIA GPUを搭載していないPCをお使いの場合は
+4GB以上のVRAMを搭載したNVIDIA GPU が必要です。NVIDIA GPUを搭載していないPCをお使いの場合は
 [クラウド版](https://qiita.com/miu200521358/items/fb0a7bcf2764d7797e26)をお勧めします。
+
+ディスクの空き容量は約20GB程度必要になります。
+また、ツールやデータを大量にダウンロードしてインストールするため、定額制で通信量に制限のないインターネット回線が必要です。
 
 ## インストール
 
@@ -140,6 +143,17 @@ A. Anacondaのインストーラーで "Add Anaconda to my PATH environment vari
 
 Q. 何も表示されずにバッチファイルが終了する。  
 A. 上に書かれた方法で Anaconda Prompt から実行して、エラーメッセージを確認してください。
+
+Q. 古いGPUでも使えますか？
+A. あまり古いGPUだと、機械学習ライブラリTensorFlowが対応していない可能性があります。
+   詳しくは https://www.tensorflow.org/install/gpu?hl=ja を参照してください。
+
+Q. "CUDA driver version is insufficient for CUDA runtime version" というエラーが出る。
+A. GPUのドライバが古いので、アップデートしましょう。
+
+Q. "CUDA out of memory" というエラーが出る。
+A. GPUのメモリ(VRAM)容量が不足しています。4GB以上のVRAMを搭載したGPUが必要です。
+   もし十分なVRAMが有るのにこのエラーが出る場合、他にGPUを使うプログラムが動いていないか確認してください。
 
 ## 連絡先
 
