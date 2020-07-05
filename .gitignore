@@ -1,4 +1,5 @@
 /.memo/
+/.vscode/
 /archive/
 /output/
 /test_*
