@@ -298,7 +298,7 @@ class SetupFrame(wx.Frame):
 
     def run_command(self, command, **kwargs):
         sys.stdout.write(command + '\n')
-        self.subproc = subprocess.Popen(command.split(), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, bufsize=1, **kwargs)
+        self.subproc = subprocess.Popen(command.split(), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, bufsize=1, errors='ignore', **kwargs)
         while self.subproc.poll() is None:
             msg = self.subproc.stdout.readline()
             if msg:
