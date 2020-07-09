@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 def run_command(command, **kwargs):
     sys.stdout.write(' '.join(command) + '\n')
-    proc = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, bufsize=1, **kwargs)
+    proc = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, bufsize=1, errors='ignore', **kwargs)
     while proc.poll() is None:
         msg = proc.stdout.readline()
         if msg:
@@ -224,6 +224,10 @@ if __name__ == '__main__':
     parser.add_argument('--order_start_frame', action='store', type=int, default=conf['order_start_frame'] if 'order_start_frame' in conf else 0, help='order_start_frame')
     parser.add_argument('--add_leg', action='store_true', default=conf['add_leg'] if 'add_leg' in conf else False, help='add invisible legs to estimated joints')
     parser.add_argument('--no_bg', action='store_true', default=conf['no_bg'] if 'no_bg' in conf else False, help='disable BG output (show skeleton only)')
+    parser.add_argument('--resize', action='store_true', default=conf['resize'] if 'resize' in conf else False, help='resize video')
+    parser.add_argument('--resize_width', action='store', type=int, default=conf['resize_width'] if 'resize_width' in conf else 1280, help='video width')
+    parser.add_argument('--resize_height', action='store', type=int, default=conf['resize_height'] if 'resize_height' in conf else 720, help='video height')
+    parser.add_argument('--change_fps', action='store_true', default=conf['change_fps'] if 'change_fps' in conf else False, help='change frame rate')
     parser.add_argument('VIDEO_FILE')
     arg = parser.parse_args()
     argdic = vars(arg)

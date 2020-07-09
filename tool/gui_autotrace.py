@@ -196,7 +196,7 @@ class AutoTraceFrame(wx.Frame):
             return
         wx.MessageBox('auto-trace finished', 'COMPLETE', wx.OK | wx.ICON_NONE, self)
         command = 'explorer {}'.format(result_dir)
-        proc = subprocess.Popen(command.split(), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, bufsize=1, encoding='utf-8')
+        proc = subprocess.Popen(command.split(), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, bufsize=1, errors='ignore')
         while proc.poll() is None:
             msg = proc.stdout.readline()
             if msg:
