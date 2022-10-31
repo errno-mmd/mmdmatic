@@ -10,6 +10,7 @@ import pathlib
 import subprocess
 import sys
 import ffmpeg
+import re
 
 logger = logging.getLogger(__name__)
 
@@ -21,6 +22,13 @@ def run_command(command, **kwargs):
         if msg:
             sys.stdout.write(msg)    
     return proc.returncode
+
+def is_image_file(filename):
+    from mimetypes import guess_type
+    (file_type, tmp) = guess_type(filename)
+    if (re.match(r'image', file_type)):
+        return True
+    return False
 
 def convert_video(input_file, output_file, width, height, fps, resize, change_fps):
     probe = ffmpeg.probe(input_file)
@@ -47,7 +55,10 @@ def convert_video(input_file, output_file, width, height, fps, resize, change_fp
     if change_fps and fps_in != fps:
         stream = ffmpeg.filter(stream, 'framerate', fps=fps)
 
-    stream = ffmpeg.output(stream, output_file)
+    if (is_image_file(input_file)):
+        stream = ffmpeg.output(stream, output_file, frames=1)
+    else:
+        stream = ffmpeg.output(stream, output_file)
     ffmpeg.run(stream, overwrite_output=True)
 
 def estimate_pose2d(input_video, output_json_dir, pose2d_video, conf):
@@ -163,7 +174,7 @@ def autotracevmd(conf):
     output_json_dir.mkdir(parents=True, exist_ok=True)
     pose2d_video = output_dir / (input_video_filename + '_' + dttm) / (input_video_filename + '_openpose.avi')
     modified_video = output_dir / (input_video_filename + '_' + dttm) / (input_video_filename + '_modified.mp4')
-    if conf['resize'] or conf['change_fps']:
+    if conf['resize'] or conf['change_fps'] or is_image_file(str(input_video)):
         width = conf['resize_width']
         height = conf['resize_height']
         fps = 30.0
